@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      View 体系兜底主题：只负责"Activity 启动到 Compose 渲染完成"之间的窗口表现
+      （状态栏、启动背景）。MD3 的颜色真相在 ui/theme/Theme.kt 的 ColorScheme 里，
+      不要在 XML 里重复维护一套 MD3 调色板。
+    -->
+    <style name="Theme.AASplitBill" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- 启动瞬间的背景，避免白屏闪一下深色 -->
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="Theme.AASplitBill.SplashScreen" parent="Theme.AASplitBill" />
+</resources>

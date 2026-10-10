@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+*/build/
+local.properties
+*.iml
+.idea/
+.cxx/
+
+# Android Studio
+captures/
+.externalNativeBuild/
+
+# Keystore（绝不能上传）
+*.jks
+*.keystore
+keystore.properties
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 日志/临时
+*.log
+*.hprof

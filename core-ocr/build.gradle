@@ -1,0 +1,55 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+}
+
+android {
+    namespace 'com.zc.aasplitbill.core.ocr'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    implementation project(':core-common')
+
+    implementation libs.androidx.core.ktx
+
+    // 协程
+    implementation libs.coroutines.core
+    implementation libs.coroutines.android
+
+    // TODO: OCR 能力后续接入（二选一）
+    //   A. 端侧：com.google.mlkit:text-recognition:16.0.1（离线，中文需 text-recognition-chinese）
+    //   B. 云端：走 core-network 上传图片给后端识别
+    // 当前仅占位，不引入具体 OCR 库，避免给骨架增加体积
+
+    // Hilt
+    implementation libs.hilt.android
+    ksp libs.hilt.compiler
+
+    // 测试
+    testImplementation libs.junit
+    testImplementation libs.coroutines.test
+    androidTestImplementation libs.androidx.junit
+}

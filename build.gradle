@@ -1,0 +1,16 @@
+// AASplitBill 根目录 build.gradle
+// 只负责声明插件版本（apply false），具体应用放在各子模块
+plugins {
+    // Android 官方插件
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+
+    // Kotlin
+    alias(libs.plugins.kotlin.android) apply false
+
+    // KSP（Hilt / Room / Moshi 注解处理，比 kapt 快）
+    alias(libs.plugins.ksp) apply false
+
+    // Hilt 依赖注入
+    alias(libs.plugins.hilt) apply false
+}

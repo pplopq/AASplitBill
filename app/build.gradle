@@ -1,0 +1,112 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+}
+
+android {
+    namespace 'com.zc.aasplitbill'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.zc.aasplitbill"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        compose true
+        buildConfig true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
+
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    // ============ 项目内模块 ============
+    // feature 层：壳模块只做导航拼装，不含业务逻辑
+    implementation project(':feature-auth')
+    implementation project(':feature-friends')
+    implementation project(':feature-bill')
+    implementation project(':feature-settlement')
+    implementation project(':feature-membership')
+
+    // core 层
+    implementation project(':core-common')
+    implementation project(':core-network')
+    implementation project(':core-database')
+    implementation project(':core-ocr')
+
+    // ============ Android 基础 ============
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.lifecycle.runtime.ktx
+    implementation libs.androidx.lifecycle.viewmodel.compose
+    implementation libs.androidx.activity.compose
+
+    // ============ Compose ============
+    implementation platform(libs.compose.bom)
+    implementation libs.compose.ui
+    implementation libs.compose.ui.graphics
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.compose.material3
+    implementation libs.compose.material.icons.extended
+    debugImplementation libs.compose.ui.tooling
+
+    // ============ 导航 ============
+    implementation libs.androidx.navigation.compose
+    implementation libs.hilt.navigation.compose
+
+    // ============ Hilt ============
+    implementation libs.hilt.android
+    ksp libs.hilt.compiler
+
+    // ============ 协程 ============
+    implementation libs.coroutines.core
+    implementation libs.coroutines.android
+
+    // ============ 测试 ============
+    testImplementation libs.junit
+    testImplementation libs.coroutines.test
+    testImplementation libs.turbine
+    testImplementation libs.mockk
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.espresso.core
+    androidTestImplementation platform(libs.compose.bom)
+}
