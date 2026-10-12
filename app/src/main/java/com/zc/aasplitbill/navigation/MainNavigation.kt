@@ -15,8 +15,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zc.aasplitbill.feature.friends.FriendsScreen
-import com.zc.aasplitbill.ui.screen.BillScreen
-import com.zc.aasplitbill.ui.screen.ProfileScreen
+import com.zc.aasplitbill.feature.group.GroupNavHost
+import com.zc.aasplitbill.ui.profile.ProfileScreen
 import com.zc.aasplitbill.ui.screen.SettlementScreen
 
 /**
@@ -24,6 +24,9 @@ import com.zc.aasplitbill.ui.screen.SettlementScreen
  *
  * 对应需求里的 "main_navigation.xml 导航图" —— Compose 世界里导航图就是下面的 NavHost 代码块，
  * 类型安全（route 是编译期常量）、支持传参，比 XML 导航图更强。
+ *
+ * 退出登录无需回调：ProfileViewModel 调 AuthManager.logout() 后全局 authState 变为
+ * LoggedOut，AppNavHost 顶层会自动切回登录页。
  */
 @Composable
 fun MainNavigation() {
@@ -64,7 +67,7 @@ fun MainNavigation() {
             modifier = Modifier.padding(innerPadding), // 关键：内容区避开底部导航栏高度
         ) {
             composable(BottomNavItem.Home.route) { FriendsScreen() }
-            composable(BottomNavItem.Bill.route) { BillScreen() }
+            composable(BottomNavItem.Bill.route) { GroupNavHost() }
             composable(BottomNavItem.Settlement.route) { SettlementScreen() }
             composable(BottomNavItem.Profile.route) { ProfileScreen() }
         }

@@ -38,6 +38,3 @@ fun BillScreen() = PlaceholderScreen("账单")
 
 @Composable
 fun SettlementScreen() = PlaceholderScreen("结算")
-
-@Composable
-fun ProfileScreen() = PlaceholderScreen("我的")
