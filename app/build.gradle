@@ -64,6 +64,7 @@ dependencies {
     implementation project(':feature-auth')
     implementation project(':feature-friends')
     implementation project(':feature-bill')
+    implementation project(':feature-group')
     implementation project(':feature-settlement')
     implementation project(':feature-membership')
 

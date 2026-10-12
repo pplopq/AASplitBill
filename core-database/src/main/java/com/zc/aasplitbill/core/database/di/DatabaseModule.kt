@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.zc.aasplitbill.core.database.AppDatabase
 import com.zc.aasplitbill.core.database.dao.FriendDao
+import com.zc.aasplitbill.core.database.dao.GroupDao
 import com.zc.aasplitbill.core.database.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -34,7 +35,11 @@ object DatabaseModule {
         AppDatabase::class.java,
         AppDatabase.DATABASE_NAME,
     )
-        .addMigrations(AppDatabase.MIGRATION_1_2, AppDatabase.MIGRATION_2_3)   // 版本迁移链，逐版本追加
+        .addMigrations(
+            AppDatabase.MIGRATION_1_2,
+            AppDatabase.MIGRATION_2_3,
+            AppDatabase.MIGRATION_3_4,
+        )   // 版本迁移链，逐版本追加
         // .fallbackToDestructiveMigration()         // 仅 debug 用！上线绝对禁止
         .build()
 
@@ -43,4 +48,7 @@ object DatabaseModule {
 
     @Provides
     fun provideFriendDao(database: AppDatabase): FriendDao = database.friendDao()
+
+    @Provides
+    fun provideGroupDao(database: AppDatabase): GroupDao = database.groupDao()
 }

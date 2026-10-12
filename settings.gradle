@@ -35,6 +35,7 @@ include ':app'
 include ':feature-auth'
 include ':feature-friends'
 include ':feature-bill'
+include ':feature-group'
 include ':feature-settlement'
 include ':feature-membership'
 

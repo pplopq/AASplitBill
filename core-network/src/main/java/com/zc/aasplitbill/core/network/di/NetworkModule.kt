@@ -5,6 +5,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.zc.aasplitbill.core.network.api.AuthApiService
 import com.zc.aasplitbill.core.network.api.FriendApiService
+import com.zc.aasplitbill.core.network.api.GroupApiService
 import com.zc.aasplitbill.core.network.interceptor.HeaderInterceptor
 import com.zc.aasplitbill.core.network.interceptor.TokenInterceptor
 import com.zc.aasplitbill.core.network.token.EncryptedPrefsTokenManager
@@ -87,6 +88,11 @@ object NetworkModule {
     @Singleton
     fun provideFriendApiService(retrofit: Retrofit): FriendApiService =
         retrofit.create(FriendApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideGroupApiService(retrofit: Retrofit): GroupApiService =
+        retrofit.create(GroupApiService::class.java)
 }
 
 /**

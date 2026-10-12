@@ -23,3 +23,15 @@ Thumbs.db
 # 日志/临时
 *.log
 *.hprof
+
+# 模拟器调试截图（adb screencap/pull 产生，非项目资源）
+s*.png
+v*.png
+app_screen.png
+screen*.png
+
+# AI 助手工作目录（本地笔记/记忆，不属于项目代码）
+.workbuddy/
+
+# 本地下载的 Gradle 分发版（构建工具缓存）
+gradle-*.zip

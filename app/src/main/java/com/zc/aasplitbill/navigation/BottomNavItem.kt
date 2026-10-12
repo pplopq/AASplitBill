@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
@@ -19,7 +20,7 @@ sealed class BottomNavItem(
     val icon: ImageVector,
 ) {
     data object Home : BottomNavItem("home", "首页", Icons.Filled.Home)
-    data object Bill : BottomNavItem("bill", "账单", Icons.Filled.DateRange)
+    data object Bill : BottomNavItem("bill", "群组", Icons.Filled.Groups)
     data object Settlement : BottomNavItem("settlement", "结算", Icons.Filled.AddCircle)
     data object Profile : BottomNavItem("profile", "我的", Icons.Filled.Person)
 
